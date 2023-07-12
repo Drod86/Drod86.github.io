@@ -1,0 +1,29 @@
+{
+  "name": "hello_microverse",
+  "version": "1.0.0",
+  "description": "Inintial Microverse Project Set Up",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drod86/Hello_Microverse.git"
+  },
+  "author": "Daniel Rodriguez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Drod86/Hello_Microverse/issues"
+  },
+  "homepage": "https://github.com/Drod86/Hello_Microverse#readme",
+  "dependencies": {
+    "lighthouse": "^10.2.0"
+  },
+  "devDependencies": {
+    "hint": "^7.1.8",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.21.0"
+  }
+}
