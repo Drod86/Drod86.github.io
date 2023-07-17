@@ -68,9 +68,11 @@ li {
   from {
     transform: translateX(-200%);
   }
+
   50% {
     transform: translateX(10%);
   }
+
   to {
     transform: translateX(0%);
   }
@@ -80,9 +82,11 @@ li {
   from {
     transform: translateX(200%);
   }
+
   50% {
     transform: translateX(-10%);
   }
+
   to {
     transform: translateX(0%);
   }
@@ -92,6 +96,7 @@ li {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -136,7 +141,7 @@ li {
   font-size: 1.7rem;
   font-weight: 600;
   padding: 1.2rem;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .btn:hover {
@@ -432,9 +437,6 @@ li {
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 7rem;
-}
-
-.recent-works .projects .card {
   animation: 2s fade-In, 3s bounceInLeft;
 }
 
@@ -471,6 +473,7 @@ li {
   .recent-works .projects .card:hover {
     background-image: url(./images/project_bg_pro_w.jpg);
   }
+
   .recent-works .projects .card:hover .heading,
   .recent-works .projects .card:hover .blurb,
   .recent-works .projects .card:hover .badges {
