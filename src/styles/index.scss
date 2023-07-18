@@ -280,13 +280,13 @@ li {
 
 /* Hero Section */
 .hero {
-  background: var(--bg-black) url(./images/hero_bg_m.png) no-repeat bottom -4.2rem right;
+  background: var(--bg-black) url(../images/hero_bg_m.png) no-repeat bottom -4.2rem right;
   color: var(--white-font);
 }
 
 @media screen and (min-width: 768px) {
   .hero {
-    background: var(--bg-black) url(./images/hero_bg_d.png) no-repeat top right;
+    background: var(--bg-black) url(../images/hero_bg_d.png) no-repeat top right;
     background-size: 80vh;
   }
 }
@@ -433,7 +433,7 @@ li {
   justify-content: flex-end;
   gap: 2.4rem;
   color: var(--white-font);
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(250, 250, 250, 0.1)), url(./images/project_bg_pro.jpg);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(250, 250, 250, 0.1)), url(../images/project_bg_pro.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 7rem;
@@ -471,7 +471,7 @@ li {
   }
 
   .recent-works .projects .card:hover {
-    background-image: url(./images/project_bg_pro_w.jpg);
+    background-image: url(../images/project_bg_pro_w.jpg);
   }
 
   .recent-works .projects .card:hover .heading,
@@ -492,14 +492,14 @@ li {
   width: 100vw;
   background-color: var(--bg-black);
   margin-top: 7rem;
-  background-image: url(./images/about_bg_m.png);
+  background-image: url(../images/about_bg_m.png);
   background-repeat: no-repeat;
   background-position: right 0 top 28rem;
 }
 
 @media screen and (min-width: 768px) {
   .about {
-    background: var(--bg-black) url(./images/about_bg_d.png) no-repeat top 9.5rem right;
+    background: var(--bg-black) url(../images/about_bg_d.png) no-repeat top 9.5rem right;
     background-size: 40%;
   }
 

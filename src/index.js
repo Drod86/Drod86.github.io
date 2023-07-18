@@ -1,4 +1,7 @@
 'use strict'
+
+import './styles/index.scss'
+
 console.log("It is really working");
 
 const obj = {
