@@ -427,3 +427,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+// Parcel
+.parcel-cache
+dist
