@@ -5,7 +5,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "[ -d 'dist/' ] && rm -rf dist/ && parcel || parcel",
-    "build": "[ -d 'dist/' ] && rm -rf dist/ && parcel build || parcel build"
+    "build": "[ -d 'dist/' ] && rm -rf dist/ docs/ && parcel build && cp -r dist/ docs/ || parcel build && cp -r dist/ docs/"
   },
   "repository": {
     "type": "git",
