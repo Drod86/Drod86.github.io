@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Inintial Microverse Project Set Up",
   "source": "src/index.html",
+  "browserlist": ">0.3%, defaults, supports es6-module, maintained node versions",
   "scripts": {
     "start": "[ -d 'dist/' ] && rm -rf dist/ && parcel || parcel",
     "build": "[ -d 'dist/' ] && rm -rf dist/ docs/ && parcel build && cp -r dist/ docs/ || parcel build && cp -r dist/ docs/"
