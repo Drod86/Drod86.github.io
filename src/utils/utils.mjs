@@ -15,12 +15,12 @@ const listenAll = (nodes, event, callback) => {
   });
 }
 
-const stopListen = (node, event) => {
-  node.removeEventListener(event)
+const stopListen = (node, event, callback) => {
+  node.removeEventListener(event, callback);
 } 
-const stopListenAll = (nodes, event) => {
+const stopListenAll = (nodes, event, callback) => {
   nodes.forEach((node) => {
-    stopListen(node, event);
+    stopListen(node, event, callback);
   });
 }
 

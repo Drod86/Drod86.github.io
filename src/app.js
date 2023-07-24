@@ -1,12 +1,12 @@
-import {grab, onClick, onClickAll} from './utils/utils.mjs';
+import {grab, onClick, onClickAll, stopListenAll} from './utils/utils.mjs';
 
 const NAV = grab('nav');
 const ITEMS = Object.values(NAV.children);
-const MENU = ITEMS.pop();
+const MENU = ITEMS.pop().children[1];
 
 const toggleMenu = () => { 
   if (NAV.classList.length > 1){
-    ITEMS.forEach(item => item.removeEventListener('click', toggleMenu))
+    stopListenAll(ITEMS, 'click', toggleMenu);
     NAV.classList.remove('open');
   } else {
     NAV.classList.add('open')
