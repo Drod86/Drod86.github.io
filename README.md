@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <h3><b>Daniel Rodriguez</b></h3>
+  <h3><b>Daniel Rodriguez </b></h3>
 
 </div>
 
@@ -38,12 +38,14 @@ My **Developer Portfolio** showcases my development projects, highlights my skil
 
 - HTML
 - CSS
+- JAVASCRIPT
 
 <details>
   <summary>Client</summary>
   <ul>
     <li><a href="https://www.w3.org/html/">HTML</a></li>
     <li><a href="https://www.w3.org/Style/CSS/">CSS</a></li>
+    <li><a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/">JAVASCRIPT</a></li>
   </ul>
 </details>
 
@@ -72,6 +74,8 @@ In order to run this project you need:
 1. Web Browser.
 2. Code Editor.
 3. Git - SCM
+4. NodeJS
+5. NPM
 
 ### Setup
 
@@ -79,7 +83,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone https://github.com/Drod86/Drod86/My_Portfolio.git
+  git clone https://github.com/Drod86/Drod86.github.io.git
 ```
 
 ### Install
@@ -98,7 +102,7 @@ Run this command:
 To run the project, execute the following command:
 
 ```sh
-  open index.html
+  npm start
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -111,21 +115,21 @@ To run the project, execute the following command:
 - Twitter: [@Rafin86](https://twitter.com/Rafin86)
 - LinkedIn: [Daniel Rodriguez](https://www.linkedin.com/in/daniel-rodriguez-drod86/)
 
-## 👥 Collaborators
 
-👤 **Wilfried Muyisa**
+## 👥 Collaborator(s) <a name="authors"></a>
 
-- GitHub: [@Drod86](https://github.com/WilfriedM01)
+👤 **Walid Ali**
+
+- GitHub: [ammarAlaliS](https://github.com/ammarAlaliS)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **UX Animations**
-- [ ] **Mobile Menu**
-- [ ] **Project Modal**
+- [ ] **[Modal_Popup]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## 🤝 Contributing <a name="contributing"></a>
 
