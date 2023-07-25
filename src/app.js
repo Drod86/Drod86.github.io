@@ -1,5 +1,5 @@
 import {
-  grab, onClick, onClickAll, stopListenAll, listen, observer
+  grab, onClick, onClickAll, stopListenAll, observer,
 } from './utils/utils.mjs';
 
 const NAV = grab('.nav');
@@ -18,14 +18,19 @@ const toggleMenu = () => {
 
 onClick(MENU, toggleMenu);
 
-const getNavLink = (id) => ITEMS.filter(item => item.children[0].href.includes(id))
+const getNavLink = (id) => ITEMS.filter((item) => item.children[0].href.includes(id));
 const PORTFOLIO = grab('#portfolio');
-// console.log(sectionLinks);
-// const onScroll = (sections) => {
-//   array.forEach(element => {
-    
-//   });
-// }
+const ABOUT = grab('#about');
+const CONTACT = grab('#contact');
+const sections = [PORTFOLIO, ABOUT, CONTACT];
 
-observer((param) => console.log(getNavLink(param.target.id)[0])
-).observe(PORTFOLIO);
+sections.forEach((section) => {
+  observer((param, visible) => {
+    const link = getNavLink(param.target.id)[0];
+    if (visible) {
+      link.style.textDecoration = 'underline';
+    } else {
+      link.style.textDecoration = '';
+    }
+  }).observe(section);
+});

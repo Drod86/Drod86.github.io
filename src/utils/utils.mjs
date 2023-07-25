@@ -34,9 +34,8 @@ const onClick = (node, callback) => listen(node, 'click', callback);
 const onClickAll = (node, callback) => listenAll(node, 'click', callback);
 
 const observer = (callback) => new IntersectionObserver( entries => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting === true) callback(entry);
-  })
+  let visible = entries[0].isIntersecting;
+  callback(entries[0], visible);
 }, { threshold: [0]});
 
 // Style
