@@ -697,7 +697,7 @@ li {
   flex-wrap: wrap;
   padding: 7rem 0;
   gap: 2.4rem;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 .contact h2 {
