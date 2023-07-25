@@ -1,8 +1,8 @@
 import {
-  grab, onClick, onClickAll, stopListenAll,
+  grab, onClick, onClickAll, stopListenAll, observer,
 } from './utils/utils.mjs';
 
-const NAV = grab('nav');
+const NAV = grab('.nav');
 const ITEMS = Object.values(NAV.children);
 const MENU = ITEMS.pop().children[1];
 
@@ -17,3 +17,20 @@ const toggleMenu = () => {
 };
 
 onClick(MENU, toggleMenu);
+
+const getNavLink = (id) => ITEMS.filter((item) => item.children[0].href.includes(id));
+const PORTFOLIO = grab('#portfolio');
+const ABOUT = grab('#about');
+const CONTACT = grab('#contact');
+const sections = [PORTFOLIO, ABOUT, CONTACT];
+
+sections.forEach((section) => {
+  observer((param, visible) => {
+    const link = getNavLink(param.target.id)[0];
+    if (visible) {
+      link.style.textDecoration = 'underline';
+    } else {
+      link.style.textDecoration = '';
+    }
+  }).observe(section);
+});

@@ -33,6 +33,11 @@ const onClick = (node, callback) => listen(node, 'click', callback);
 
 const onClickAll = (node, callback) => listenAll(node, 'click', callback);
 
+const observer = (callback) => new IntersectionObserver( entries => {
+  let visible = entries[0].isIntersecting;
+  callback(entries[0], visible);
+}, { threshold: [0]});
+
 // Style
 const checkStyle = (el, style) => window.getComputedStyle(el, style);
 
@@ -40,4 +45,4 @@ const checkStyle = (el, style) => window.getComputedStyle(el, style);
 const OPEN = "open";
 const CLOSE = "close";
 
-export { grab, grabAll, render, onLoad, onLoadAll, onClick, onClickAll, listen, listenAll, stopListen, stopListenAll, checkStyle, OPEN, CLOSE };
+export { grab, grabAll, render, onLoad, onLoadAll, onClick, onClickAll, listen, listenAll, stopListen, stopListenAll, checkStyle, observer, OPEN, CLOSE };
