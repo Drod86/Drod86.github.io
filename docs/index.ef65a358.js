@@ -1,2 +1,0 @@
-const e=(e,c,s)=>{e.addEventListener(c,s)},c=(c,s,n)=>{c.forEach(c=>{e(c,s,n)})},s=(e,c,s)=>{e.removeEventListener(c,s)},n=(e,c,n)=>{e.forEach(e=>{s(e,c,n)})},t=(e,s)=>c(e,"click",s),l=document.querySelector("nav"),i=Object.values(l.children),o=i.pop().children[1],r=()=>{l.classList.length>1?(n(i,"click",r),l.classList.remove("open")):(l.classList.add("open"),t(i,r))};e(o,"click",r);
-//# sourceMappingURL=index.ef65a358.js.map
