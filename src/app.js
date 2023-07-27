@@ -1,7 +1,7 @@
 import {
-  grab, onClick, onClickAll, stopListenAll, observer, render, grabAll, listen,
+  grab, onClick, onClickAll, stopListenAll, observer, node, render, grabAll, listen,
 } from './utils/utils.mjs';
-// import { modal } from './components/modal.mjs';
+import { modal } from './components/modal.mjs';
 import card from './components/card.mjs';
 import db from './utils/fake_db.mjs';
 
@@ -48,7 +48,6 @@ render(projectEl, projects(db.projects));
 const projectCards = Object.values(grabAll('.card'));
 projectCards.forEach((project) => {
   const isMobile = window.matchMedia('(min-width: 768px)');
-  console.log(isMobile.matches);
   if (project.parentNode.className.includes('projects') && isMobile.matches) {
     const previousBG = project.style.backgroundImage;
     listen(project, 'mouseover', () => {
@@ -59,3 +58,26 @@ projectCards.forEach((project) => {
     });
   }
 });
+
+// Modal popup functionality
+const CONTAINER = grab('.container');
+const modalNode = node('div');
+modalNode.className = 'modal grid';
+const projectBtns = Object.values(grabAll('.btn'));
+// Seperate buttons that shouldn't trigger the modal from the projectBtns group
+projectBtns.pop().pop();
+// Create modal toggle logic
+const toggleModal = (e) => {
+  const isModal = grab('.modal');
+  const { id } = e.target;
+  if (!isModal) {
+    CONTAINER.appendChild(modalNode);
+    const modalEl = grab('.modal');
+    render(modalEl, modal(db.projects, id));
+    modalEl.addEventListener('click', toggleModal);
+  } else if (e.target.className.includes('modal')) {
+    CONTAINER.removeChild(modalNode);
+  }
+};
+// Add the click event listener to the projectBtns that will toggle the modal
+onClickAll(projectBtns, toggleModal);
