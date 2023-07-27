@@ -1,5 +1,5 @@
 import {
-  grab, onClick, onClickAll, stopListenAll, observer, node, render, grabAll, listen,
+  grab, onClick, onClickAll, onSubmit, stopListenAll, observer, node, render, grabAll, listen,
 } from './utils/utils.mjs';
 import modal from './components/modal.mjs';
 import card from './components/card.mjs';
@@ -48,7 +48,6 @@ render(projectEl, projects(db.projects));
 const projectCards = Object.values(grabAll('.card'));
 projectCards.forEach((project) => {
   const isDesktop = window.matchMedia('(min-width: 768px)');
-  console.log(isDesktop.matches);
   if (project.parentNode.className.includes('projects') && isDesktop.matches) {
     const previousBG = project.style.backgroundImage;
     listen(project, 'mouseover', () => {
@@ -87,29 +86,25 @@ onClickAll(projectBtns, toggleModal);
 // Form validation functionality "lowercase email address"
 
 const contactForm = grab('.form');
-const handleInvalidEmail = (email) => {
-  let popup = node('div');
-  popup.className = 'invalidEmail fadeInOut';
-  contactForm.appendChild(popup);
-  let errorMsgEl = grab('.invalidEmail');
-  render(errorMsgEl, 'Email must be in all lowercase. We changed it for you? If it looks good, submit again.');
-  
-  onClick(grab('.container'), (e) => {
-    if (e.target.className !== errorMsgEl.className) contactForm.removeChild(errorMsgEl);
-  });
+import fadingPopup from './components/popups.mjs';
 
-  grab('.email').value = email.toLowerCase();
+const handleInvalidEmail = (form, email) => {
+  let emailField = grab('.email');
+  let className = 'invalidEmail';
+  let popupText = 'Your email must be in all lowercase. We changed it for you? If it looks good, submit the form again. Thank you!'
+  fadingPopup(form, className, popupText);
+  emailField.value = email.toLowerCase();
 }
 
 const validatedContact = (e) => {
   e.preventDefault();
-  alert('submited')
   let email = grab('.email').value;
   let isLowercase = email === email.toLowerCase();
   if (isLowercase) {
     contactForm.submit();
   } else {
-    handleInvalidEmail(email);
+    handleInvalidEmail(contactForm,email);
   }
 }
+
 onSubmit(contactForm,validatedContact);
