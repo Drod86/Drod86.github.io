@@ -83,3 +83,33 @@ const toggleModal = (e) => {
 };
 // Add the click event listener to the projectBtns that will toggle the modal
 onClickAll(projectBtns, toggleModal);
+
+// Form validation functionality "lowercase email address"
+
+const contactForm = grab('.form');
+const handleInvalidEmail = (email) => {
+  let popup = node('div');
+  popup.className = 'invalidEmail fadeInOut';
+  contactForm.appendChild(popup);
+  let errorMsgEl = grab('.invalidEmail');
+  render(errorMsgEl, 'Email must be in all lowercase. We changed it for you? If it looks good, submit again.');
+  
+  onClick(grab('.container'), (e) => {
+    if (e.target.className !== errorMsgEl.className) contactForm.removeChild(errorMsgEl);
+  });
+
+  grab('.email').value = email.toLowerCase();
+}
+
+const validatedContact = (e) => {
+  e.preventDefault();
+  alert('submited')
+  let email = grab('.email').value;
+  let isLowercase = email === email.toLowerCase();
+  if (isLowercase) {
+    contactForm.submit();
+  } else {
+    handleInvalidEmail(email);
+  }
+}
+onSubmit(contactForm,validatedContact);
