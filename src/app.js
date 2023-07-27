@@ -21,6 +21,7 @@ const toggleMenu = () => {
 
 onClick(MENU, toggleMenu);
 
+// Nav Item on scroll animation
 const getNavLink = (id) => ITEMS.filter((item) => item.children[0].href.includes(id));
 const PORTFOLIO = grab('#portfolio');
 const ABOUT = grab('#about');
