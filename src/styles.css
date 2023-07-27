@@ -687,6 +687,10 @@ li {
   animation: 2s fade-In, 3s bounceInLeft;
 }
 
+.modal .recent-works .heading {
+  margin-top: 0;
+}
+
 .recent-works .projects .card .heading,
 .recent-works .projects .card .blurb,
 .recent-works .projects .card .badges {
@@ -742,10 +746,6 @@ li {
   padding: 1.6rem 1.6rem 7.2rem 1.6rem;
   max-height: 95vh;
   gap: 1.2rem;
-}
-
-.modal .recent-works .heading {
-  margin-top: 0;
 }
 
 @media screen and (min-width: 768px) {
