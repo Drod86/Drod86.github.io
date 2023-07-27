@@ -29,7 +29,7 @@ const db = {
       [{text: 'HTML', classList: ['']}, {text: 'Bootstrap', classList: ['']}, {text: 'Ruby', classList: ['']}], 
       './images/project_bg_pro.jpg', 
       null, 
-      [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
+      [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`, `A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
       null, 
       null, 
       '../images/modal.jpg'
@@ -42,17 +42,17 @@ const db = {
       [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
       null, 
       null, 
-      null
+      '../images/modal.jpg'
     ),
     projectData(
       'Website Portfolio',
       [{text: 'HTML', classList: ['']}, {text: 'Bootstrap', classList: ['']}, {text: 'Ruby', classList: ['']}], 
       './images/project_bg_web.jpg', 
       null, 
-      [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
+      [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`, `A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
       null, 
       null, 
-      null
+      '../images/modal.jpg'
     ),
     projectData(
       'Profesional Art Printing Data More',
@@ -62,17 +62,17 @@ const db = {
       [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
       null, 
       null, 
-      null
+      '../images/modal.jpg'
     ),
     projectData(
       'Data Dashboard Healthcare',
       [{text: 'HTML', classList: ['']}, {text: 'Bootstrap', classList: ['']}, {text: 'Ruby', classList: ['']}], 
       './images/project_bg_data.jpg', 
       null, 
-      [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
+      [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`, `A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
       null, 
       null, 
-      null
+      '../images/modal.jpg'
     ),
     projectData(
       'Website Portfolio',
@@ -82,7 +82,7 @@ const db = {
       [`A daily selection of privately personalized reads; no accounts or sign-ups required. This has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a standard dummy text.`], 
       null, 
       null, 
-      null
+      '../images/modal.jpg'
     ),
   ]
 }

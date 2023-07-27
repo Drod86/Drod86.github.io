@@ -58,26 +58,3 @@ projectCards.forEach((project) => {
     });
   }
 });
-
-// Modal popup functionality
-const CONTAINER = grab('.container');
-const modalNode = node('div');
-modalNode.className = 'modal grid';
-const projectBtns = Object.values(grabAll('.btn'));
-// Seperate buttons that shouldn't trigger the modal from the projectBtns group
-projectBtns.pop().pop();
-// Create modal toggle logic
-const toggleModal = (e) => {
-  const isModal = grab('.modal');
-  const { id } = e.target;
-  if (!isModal) {
-    CONTAINER.appendChild(modalNode);
-    const modalEl = grab('.modal');
-    render(modalEl, modal(db.projects, id));
-    modalEl.addEventListener('click', toggleModal);
-  } else if (e.target.className.includes('modal')) {
-    CONTAINER.removeChild(modalNode);
-  }
-};
-// Add the click event listener to the projectBtns that will toggle the modal
-onClickAll(projectBtns, toggleModal);
