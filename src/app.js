@@ -47,8 +47,9 @@ render(projectEl, projects(db.projects));
 // Mouse over project change background
 const projectCards = Object.values(grabAll('.card'));
 projectCards.forEach((project) => {
-  const isMobile = window.matchMedia('(min-width: 768px)');
-  if (project.parentNode.className.includes('projects') && isMobile.matches) {
+  const isDesktop = window.matchMedia('(min-width: 768px)');
+  console.log(isDesktop.matches);
+  if (project.parentNode.className.includes('projects') && isDesktop.matches) {
     const previousBG = project.style.backgroundImage;
     listen(project, 'mouseover', () => {
       project.style.background = 'url(./images/project_bg_pro_w.jpg)';
