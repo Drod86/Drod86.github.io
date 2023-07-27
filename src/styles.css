@@ -253,7 +253,7 @@ li {
 }
 
 .modal .heading {
-  margin: 0 0 1.2rem 0;
+  margin: 100rem 0 1.2rem 0;
   width: 85%;
   font-size: 3.2rem;
   font-family: "Inter", sans-serif;
@@ -340,12 +340,12 @@ li {
 }
 
 .modal .img {
-  max-height: 35vh;
+  height: 35vh;
 }
 
 @media screen and (min-width: 768px) {
   .modal .img {
-    max-height: 60vh;
+    height: 60vh;
   }
 }
 
@@ -742,7 +742,10 @@ li {
   padding: 1.6rem 1.6rem 7.2rem 1.6rem;
   max-height: 95vh;
   gap: 1.2rem;
-  justify-content: space-between;
+}
+
+.modal .recent-works .heading {
+  margin-top: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -773,6 +776,10 @@ li {
     position: absolute;
     top: 2.4rem;
     right: 3.6rem;
+  }
+
+  .modal .recent-works .heading {
+    margin-bottom: 0;
   }
 }
 

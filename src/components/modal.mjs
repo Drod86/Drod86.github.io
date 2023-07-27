@@ -5,7 +5,7 @@ import heading from "./heading.mjs";
 import blurb from "./blurb.mjs";
 
 const modal = (obj, id) => {
-  const {headingText, bdgs, modalImgUrl, imgAlt, blurbs} = obj[id];
+  const {headingText, bdgs, modalImgUrl, imgAlt, blurbs, liveUrl, githubUrl} = obj[id];
 
   let markup = `
     <section class="recent-works grid-item">
@@ -20,18 +20,22 @@ const modal = (obj, id) => {
         <article class="card">
           ${blurb(blurbs, 'modal')}
           <div class="btns">
-            <button type="button" class="btn">
-              See live
-              <svg class="icon">
-                <use xlink:href="./images/sprite.svg#see_live"></use>
-              </svg>
-            </button>
-            <button type="button" class="btn">
-              See source
-              <svg class="icon">
-                <use xlink:href="./images/sprite.svg#github"></use>
-              </svg>
-            </button>
+            <a href="${liveUrl}" target="_blank">
+              <button type="button" class="btn">
+                See live
+                <svg class="icon">
+                  <use xlink:href="./images/sprite.svg#see_live"></use>
+                </svg>
+              </button>
+            </a>
+            <a href="${githubUrl}" target="_blank">
+              <button type="button" class="btn">
+                See source
+                <svg class="icon">
+                  <use xlink:href="./images/sprite.svg#github"></use>
+                </svg>
+              </button>
+            </a>
           </div>
         </div>
       </article>
@@ -40,17 +44,4 @@ const modal = (obj, id) => {
   return markup;
 }
 
-const toggleModal = (el, obj, id) => {
-  let markup = '';
-  let hidden = checkStyle(el, '.modal', 'display') === 'none';
-  if (hidden) {
-    markup = modal(obj, id);
-    render(el, markup);
-    el.style.display = 'inline-block';
-  } else {
-    render(el, markup);
-    el.style.display = 'none';
-  }
-}
-
-export {toggleModal, modal};
+export default modal;
