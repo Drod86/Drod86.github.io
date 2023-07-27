@@ -1,7 +1,7 @@
 import {
-  grab, onClick, onClickAll, stopListenAll, observer, node, render, grabAll, listen
+  grab, onClick, onClickAll, stopListenAll, observer, render, grabAll, listen,
 } from './utils/utils.mjs';
-import {modal} from './components/modal.mjs';
+// import { modal } from './components/modal.mjs';
 import card from './components/card.mjs';
 import db from './utils/fake_db.mjs';
 
@@ -40,21 +40,21 @@ sections.forEach((section) => {
 
 // Dynamic rendering of projects
 const projectEl = grab('.projects');
-const projects = (projectsObj) => projectsObj.filter((project, i) => i > 0).reduce((acc, project, i) => acc += card(project, ++i), ``);
+const projects = (projectsObj) => projectsObj.filter((project, i) => i > 0).reduce((acc, project, i) => acc + card(project, i + 1), '');
 render(projectEl, projects(db.projects));
 
-//Mouse over project change background
+// Mouse over project change background
 const projectCards = Object.values(grabAll('.card'));
-projectCards.forEach(project => {
-  let isMobile = window.matchMedia("(min-width: 768px)");
+projectCards.forEach((project) => {
+  const isMobile = window.matchMedia('(min-width: 768px)');
   console.log(isMobile.matches);
   if (project.parentNode.className.includes('projects') && isMobile.matches) {
-    let previousBG = project.style.backgroundImage;
-    listen(project, 'mouseover', (e) => {
+    const previousBG = project.style.backgroundImage;
+    listen(project, 'mouseover', () => {
       project.style.background = 'url(./images/project_bg_pro_w.jpg)';
-    })
-    listen(project, 'mouseout', (e) => {
+    });
+    listen(project, 'mouseout', () => {
       project.style.background = previousBG;
-    })
-  };
-})
+    });
+  }
+});

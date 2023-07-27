@@ -1,4 +1,6 @@
 // DOM
+const node = (type) => document.createElement(type)
+
 const grab = (selector) => document.querySelector(selector);
 
 const grabAll = (selector) => Object.values(document.querySelectorAll(selector));
@@ -8,7 +10,8 @@ const render = (node, markup) => (node.innerHTML = markup);
 // listen
 const listen = (node, event, callback) => {
   node.addEventListener(event, callback)
-} 
+}
+
 const listenAll = (nodes, event, callback) => {
   nodes.forEach((node) => {
     listen(node, event, callback);
@@ -45,4 +48,4 @@ const checkStyle = (el, style) => window.getComputedStyle(el, style);
 const OPEN = "open";
 const CLOSE = "close";
 
-export { grab, grabAll, render, onLoad, onLoadAll, onClick, onClickAll, listen, listenAll, stopListen, stopListenAll, checkStyle, observer, OPEN, CLOSE };
+export { grab, grabAll, render, onLoad, onLoadAll, onClick, onClickAll, listen, listenAll, stopListen, stopListenAll, checkStyle, node, observer, OPEN, CLOSE };
