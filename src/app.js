@@ -34,3 +34,24 @@ sections.forEach((section) => {
     }
   }).observe(section);
 });
+
+// Dynamic rendering of projects
+const projectEl = grab('.projects');
+const projects = (projectsObj) => projectsObj.filter((project, i) => i > 0).reduce((acc, project, i) => acc += card(project, ++i), ``);
+render(projectEl, projects(db.projects));
+
+//Mouse over project change background
+const projectCards = Object.values(grabAll('.card'));
+projectCards.forEach(project => {
+  let isMobile = window.matchMedia("(min-width: 768px)");
+  console.log(isMobile.matches);
+  if (project.parentNode.className.includes('projects') && isMobile.matches) {
+    let previousBG = project.style.backgroundImage;
+    listen(project, 'mouseover', (e) => {
+      project.style.background = 'url(./images/project_bg_pro_w.jpg)';
+    })
+    listen(project, 'mouseout', (e) => {
+      project.style.background = previousBG;
+    })
+  };
+})
