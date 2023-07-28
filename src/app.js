@@ -96,7 +96,7 @@ const handleInvalidEmail = (form, email) => {
   emailField.value = email.toLowerCase();
 }
 
-const validatedContact = (e) => {
+const validateContact = (e) => {
   e.preventDefault();
   let email = grab('.email').value;
   let isLowercase = email === email.toLowerCase();
@@ -107,4 +107,4 @@ const validatedContact = (e) => {
   }
 }
 
-onSubmit(contactForm,validatedContact);
+onSubmit(contactForm,validateContact);
