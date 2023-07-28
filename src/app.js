@@ -85,7 +85,6 @@ const toggleModal = (e) => {
 onClickAll(projectBtns, toggleModal);
 
 // Form validation functionality "lowercase email address"
-
 const contactForm = grab('.form');
 
 const handleInvalidEmail = (form, email) => {
