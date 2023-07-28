@@ -84,30 +84,12 @@ const toggleModal = (e) => {
 // Add the click event listener to the projectBtns that will toggle the modal
 onClickAll(projectBtns, toggleModal);
 
+// Contact Form Functionality
+/**
+  localstorage functions go here...
+*/
+
 // Form validation functionality "lowercase email address"
-const contactForm = grab('.form');
-
-const captureFormState= (form) => Object.values(form.children).filter(child => Object.values(child.attributes).filter(att => att.name === 'required').length > 0).reduce((acc, input) => ({...acc, [input.name]: input.value}), {});
-
-const persistFormState = (form) => {
-  const formName = form.classList[0];
-  const formState = JSON.stringify(captureFormState(form));
-  localStorage.setItem(formName, formState);
-} 
-
-const loadFormState = (form) => {
-  const formName = form.classList[0];
-  const formInputs = Object.values(form.children).filter(child => Object.values(child.attributes).filter(att => att.name === 'required').length > 0);
-  let stateExists = localStorage.getItem(formName);
-  console.log(stateExists);
-  if (stateExists === null) {
-    persistFormState(form);
-  }
-  console.log(localStorage.getItem(formName));
-  const state = JSON.parse(localStorage.getItem(formName));
-  formInputs.forEach(input => input.value = state[input.name]);
-}
-
 const handleInvalidEmail = (form, email) => {
   const emailField = grab('.email');
   const className = 'invalidEmail';
@@ -128,6 +110,6 @@ const validateContact = (e) => {
   }
 };
 
-onLoad(window, loadFormState.bind(this, contactForm));
-onUnload(window, persistFormState.bind(this, contactForm));
 onSubmit(contactForm, validateContact);
+
+
