@@ -1,5 +1,5 @@
 import {
-  grab, onClick, onClickAll, onSubmit, stopListenAll, observer, node, render, grabAll, listen,
+  grab, onClick, onClickAll, onSubmit, onLoad, stopListenAll, observer, node, render, grabAll, listen,
 } from './utils/utils.mjs';
 import modal from './components/modal.mjs';
 import card from './components/card.mjs';
@@ -85,8 +85,16 @@ const toggleModal = (e) => {
 onClickAll(projectBtns, toggleModal);
 
 // Form validation functionality "lowercase email address"
-
 const contactForm = grab('.form');
+
+const persistForm = (formEl) => {
+  let formName = formEl.classList[0];
+  let formInputs = Object.values(formEl.children).map(input => Object.values(input.attributes).filter(att => att.name === 'required'));
+
+  console.log(formInputs.forEach(at => console.log(at.name === "required")));
+  let formState = {}
+  console.log(formInputs);
+} 
 
 const handleInvalidEmail = (form, email) => {
   const emailField = grab('.email');
@@ -107,4 +115,5 @@ const validateContact = (e) => {
   }
 };
 
+onLoad(window, persistForm.bind(this, contactForm));
 onSubmit(contactForm, validateContact);
