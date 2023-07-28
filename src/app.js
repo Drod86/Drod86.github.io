@@ -1,9 +1,10 @@
 import {
-  grab, onClick, onClickAll, stopListenAll, observer, node, render, grabAll, listen,
+  grab, onClick, onClickAll, onSubmit, stopListenAll, observer, node, render, grabAll, listen,
 } from './utils/utils.mjs';
 import modal from './components/modal.mjs';
 import card from './components/card.mjs';
 import db from './utils/fake_db.mjs';
+import fadingPopup from './components/popups.mjs';
 
 const NAV = grab('.nav');
 const ITEMS = Object.values(NAV.children);
@@ -48,7 +49,6 @@ render(projectEl, projects(db.projects));
 const projectCards = Object.values(grabAll('.card'));
 projectCards.forEach((project) => {
   const isDesktop = window.matchMedia('(min-width: 768px)');
-  console.log(isDesktop.matches);
   if (project.parentNode.className.includes('projects') && isDesktop.matches) {
     const previousBG = project.style.backgroundImage;
     listen(project, 'mouseover', () => {
@@ -83,3 +83,27 @@ const toggleModal = (e) => {
 };
 // Add the click event listener to the projectBtns that will toggle the modal
 onClickAll(projectBtns, toggleModal);
+
+// Form validation functionality "lowercase email address"
+const contactForm = grab('.form');
+
+const handleInvalidEmail = (form, email) => {
+  const emailField = grab('.email');
+  const className = 'invalidEmail';
+  const popupText = 'Your email must be in all lowercase. We changed it for you? If it looks good, submit the form again. Thank you!';
+  fadingPopup(form, className, popupText);
+  emailField.value = email.toLowerCase();
+};
+
+const validateContact = (e) => {
+  e.preventDefault();
+  const email = grab('.email').value;
+  const isLowercase = email === email.toLowerCase();
+  if (isLowercase) {
+    contactForm.submit();
+  } else {
+    handleInvalidEmail(contactForm, email);
+  }
+};
+
+onSubmit(contactForm, validateContact);
