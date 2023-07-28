@@ -1,5 +1,5 @@
 import {
-  grab, onClick, onClickAll, onSubmit, onLoad, stopListenAll, observer, node, render, grabAll, listen,
+  grab, onClick, onClickAll, onSubmit, onLoad, stopListenAll, observer, node, render, grabAll, listen, onUnload,
 } from './utils/utils.mjs';
 import modal from './components/modal.mjs';
 import card from './components/card.mjs';
@@ -87,14 +87,26 @@ onClickAll(projectBtns, toggleModal);
 // Form validation functionality "lowercase email address"
 const contactForm = grab('.form');
 
-const persistForm = (formEl) => {
-  let formName = formEl.classList[0];
-  let formInputs = Object.values(formEl.children).map(input => Object.values(input.attributes).filter(att => att.name === 'required'));
+const captureFormState= (form) => Object.values(form.children).filter(child => Object.values(child.attributes).filter(att => att.name === 'required').length > 0).reduce((acc, input) => ({...acc, [input.name]: input.value}), {});
 
-  console.log(formInputs.forEach(at => console.log(at.name === "required")));
-  let formState = {}
-  console.log(formInputs);
+const persistFormState = (form) => {
+  const formName = form.classList[0];
+  const formState = JSON.stringify(captureFormState(form));
+  localStorage.setItem(formName, formState);
 } 
+
+const loadFormState = (form) => {
+  const formName = form.classList[0];
+  const formInputs = Object.values(form.children).filter(child => Object.values(child.attributes).filter(att => att.name === 'required').length > 0);
+  let stateExists = localStorage.getItem(formName);
+  console.log(stateExists);
+  if (stateExists === null) {
+    persistFormState(form);
+  }
+  console.log(localStorage.getItem(formName));
+  const state = JSON.parse(localStorage.getItem(formName));
+  formInputs.forEach(input => input.value = state[input.name]);
+}
 
 const handleInvalidEmail = (form, email) => {
   const emailField = grab('.email');
@@ -110,10 +122,12 @@ const validateContact = (e) => {
   const isLowercase = email === email.toLowerCase();
   if (isLowercase) {
     contactForm.submit();
+    contactForm.reset();
   } else {
     handleInvalidEmail(contactForm, email);
   }
 };
 
-onLoad(window, persistForm.bind(this, contactForm));
+onLoad(window, loadFormState.bind(this, contactForm));
+onUnload(window, persistFormState.bind(this, contactForm));
 onSubmit(contactForm, validateContact);

@@ -32,6 +32,8 @@ const onLoad = (node, callback) => listen(node, 'load', callback);
 
 const onLoadAll = (node, callback) => listenAll(node, 'load', callback);
 
+const onUnload = (node, callback) => listen(node, 'unload', callback);
+
 const onClick = (node, callback) => listen(node, 'click', callback);
 
 const onClickAll = (node, callback) => listenAll(node, 'click', callback);
@@ -50,4 +52,4 @@ const checkStyle = (el, style) => window.getComputedStyle(el, style);
 const OPEN = "open";
 const CLOSE = "close";
 
-export { grab, grabAll, render, onLoad, onLoadAll, onClick, onClickAll, onSubmit, listen, listenAll, stopListen, stopListenAll, checkStyle, node, observer, OPEN, CLOSE };
+export { grab, grabAll, render, onLoad, onLoadAll, onUnload, onClick, onClickAll, onSubmit, listen, listenAll, stopListen, stopListenAll, checkStyle, node, observer, OPEN, CLOSE };
