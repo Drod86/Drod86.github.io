@@ -1,39 +1,55 @@
-import {
-  grab, onClick, onClickAll, onSubmit, onLoad,
-  stopListenAll, observer, node, render, grabAll,
-  listen, onUnload,
-} from './utils/utils';
-import modal from './components/modal';
-import card from './components/card';
-import db from './utils/fake_db';
-import fadingPopup from './components/popups';
+'use strict';
 
-const NAV = grab('.nav');
-const ITEMS = Object.values(NAV.children);
-const MENU = ITEMS.pop().children[1];
+var _utils = require('./utils/utils');
 
-const toggleMenu = () => {
+var _modal = require('./components/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _card = require('./components/card');
+
+var _card2 = _interopRequireDefault(_card);
+
+var _fake_db = require('./utils/fake_db');
+
+var _fake_db2 = _interopRequireDefault(_fake_db);
+
+var _popups = require('./components/popups');
+
+var _popups2 = _interopRequireDefault(_popups);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NAV = (0, _utils.grab)('.nav');
+var ITEMS = Object.values(NAV.children);
+var MENU = ITEMS.pop().children[1];
+
+var toggleMenu = function toggleMenu() {
   if (NAV.classList.length > 1) {
-    stopListenAll(ITEMS, 'click', toggleMenu);
+    (0, _utils.stopListenAll)(ITEMS, 'click', toggleMenu);
     NAV.classList.remove('open');
   } else {
     NAV.classList.add('open');
-    onClickAll(ITEMS, toggleMenu);
+    (0, _utils.onClickAll)(ITEMS, toggleMenu);
   }
 };
 
-onClick(MENU, toggleMenu);
+(0, _utils.onClick)(MENU, toggleMenu);
 
 // Nav Item on scroll animation
-const getNavLink = (id) => ITEMS.filter((item) => item.children[0].href.includes(id));
-const PORTFOLIO = grab('#portfolio');
-const ABOUT = grab('#about');
-const CONTACT = grab('#contact');
-const sections = [PORTFOLIO, ABOUT, CONTACT];
+var getNavLink = function getNavLink(id) {
+  return ITEMS.filter(function (item) {
+    return item.children[0].href.includes(id);
+  });
+};
+var PORTFOLIO = (0, _utils.grab)('#portfolio');
+var ABOUT = (0, _utils.grab)('#about');
+var CONTACT = (0, _utils.grab)('#contact');
+var sections = [PORTFOLIO, ABOUT, CONTACT];
 
-sections.forEach((section) => {
-  observer((param, visible) => {
-    const link = getNavLink(param.target.id)[0];
+sections.forEach(function (section) {
+  (0, _utils.observer)(function (param, visible) {
+    var link = getNavLink(param.target.id)[0];
     if (visible) {
       link.style.textDecoration = 'underline';
     } else {
@@ -43,89 +59,96 @@ sections.forEach((section) => {
 });
 
 // Dynamic rendering of projects
-const projectEl = grab('.projects');
-const projects = (projectsObj) => projectsObj.filter((project, i) => i > 0).reduce((acc, project, i) => acc + card(project, i + 1), '');
-render(projectEl, projects(db.projects));
+var projectEl = (0, _utils.grab)('.projects');
+var projects = function projects(projectsObj) {
+  return projectsObj.filter(function (project, i) {
+    return i > 0;
+  }).reduce(function (acc, project, i) {
+    return acc + (0, _card2.default)(project, i + 1);
+  }, '');
+};
+(0, _utils.render)(projectEl, projects(_fake_db2.default.projects));
 
 // Mouse over project change background
-const projectCards = Object.values(grabAll('.card'));
-projectCards.forEach((project) => {
-  const isDesktop = window.matchMedia('(min-width: 768px)');
+var projectCards = Object.values((0, _utils.grabAll)('.card'));
+projectCards.forEach(function (project) {
+  var isDesktop = window.matchMedia('(min-width: 768px)');
   if (project.parentNode.className.includes('projects') && isDesktop.matches) {
-    const previousBG = project.style.backgroundImage;
-    listen(project, 'mouseover', () => {
+    var previousBG = project.style.backgroundImage;
+    (0, _utils.listen)(project, 'mouseover', function () {
       project.style.background = 'url(./images/project_bg_pro_w.jpg)';
     });
-    listen(project, 'mouseout', () => {
+    (0, _utils.listen)(project, 'mouseout', function () {
       project.style.background = previousBG;
     });
   }
 });
 
 // Modal popup functionality
-const CONTAINER = grab('.container');
-const modalNode = node('div');
+var CONTAINER = (0, _utils.grab)('.container');
+var modalNode = (0, _utils.node)('div');
 modalNode.className = 'modal grid';
-const projectBtns = Object.values(grabAll('.btn'));
+var projectBtns = Object.values((0, _utils.grabAll)('.btn'));
 // Seperate buttons that shouldn't trigger the modal from the projectBtns group
 projectBtns.pop();
 projectBtns.pop();
 // Create modal toggle logic
-const toggleModal = (e) => {
-  const isModal = grab('.modal');
-  const { id } = e.target;
+var toggleModal = function toggleModal(e) {
+  var isModal = (0, _utils.grab)('.modal');
+  var id = e.target.id;
+
   if (!isModal) {
     CONTAINER.appendChild(modalNode);
-    const modalEl = grab('.modal');
-    render(modalEl, modal(db.projects, id));
+    var modalEl = (0, _utils.grab)('.modal');
+    (0, _utils.render)(modalEl, (0, _modal2.default)(_fake_db2.default.projects, id));
     modalEl.addEventListener('click', toggleModal);
   } else if (e.target.className.includes('modal')) {
     CONTAINER.removeChild(modalNode);
   }
 };
 // Add the click event listener to the projectBtns that will toggle the modal
-onClickAll(projectBtns, toggleModal);
+(0, _utils.onClickAll)(projectBtns, toggleModal);
 
 // Form Functionality: persist state and validate email entry
 
 // Persist Form State:
-const contactForm = grab('.form');
+var contactForm = (0, _utils.grab)('.form');
 
-const captureFormState = (form) => Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0).reduce((acc, input) => ({ ...acc, [input.name]: input.value }), {});
+// const captureFormState = (form) => Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0).reduce((acc, input) => ({ ...acc, [input.name]: input.value }), {});
 
-const persistFormState = (form) => {
-  const formName = form.classList[0];
-  const formState = JSON.stringify(captureFormState(form));
-  localStorage.setItem(formName, formState);
-};
+// const persistFormState = (form) => {
+//   const formName = form.classList[0];
+//   const formState = JSON.stringify(captureFormState(form));
+//   localStorage.setItem(formName, formState);
+// };
 
-const loadFormState = (form) => {
-  const formName = form.classList[0];
-  const formInputs = Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0);
-  const stateExists = localStorage.getItem(formName);
-  if (stateExists === null) {
-    persistFormState(form);
-  }
-  const state = JSON.parse(localStorage.getItem(formName));
-  formInputs.forEach((input) => { input.value = state[input.name]; });
-};
+// const loadFormState = (form) => {
+//   const formName = form.classList[0];
+//   const formInputs = Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0);
+//   const stateExists = localStorage.getItem(formName);
+//   if (stateExists === null) {
+//     persistFormState(form);
+//   }
+//   const state = JSON.parse(localStorage.getItem(formName));
+//   formInputs.forEach((input) => { input.value = state[input.name]; });
+// };
 
-onLoad(window, loadFormState.bind(this, contactForm));
-onUnload(window, persistFormState.bind(this, contactForm));
+// onLoad(window, loadFormState.bind(this, contactForm));
+// onUnload(window, persistFormState.bind(this, contactForm));
 
 // Form validation functionality "lowercase email address"
-const handleInvalidEmail = (form, email) => {
-  const emailField = grab('.email');
-  const className = 'invalidEmail';
-  const popupText = 'Your email must be in all lowercase. We changed it for you? If it looks good, submit the form again. Thank you!';
-  fadingPopup(form, className, popupText);
+var handleInvalidEmail = function handleInvalidEmail(form, email) {
+  var emailField = (0, _utils.grab)('.email');
+  var className = 'invalidEmail';
+  var popupText = 'Your email must be in all lowercase. We changed it for you? If it looks good, submit the form again. Thank you!';
+  (0, _popups2.default)(form, className, popupText);
   emailField.value = email.toLowerCase();
 };
 
-const validateContact = (e) => {
+var validateContact = function validateContact(e) {
   e.preventDefault();
-  const email = grab('.email').value;
-  const isLowercase = email === email.toLowerCase();
+  var email = (0, _utils.grab)('.email').value;
+  var isLowercase = email === email.toLowerCase();
   if (isLowercase) {
     contactForm.submit();
     contactForm.reset();
@@ -134,4 +157,4 @@ const validateContact = (e) => {
   }
 };
 
-onSubmit(contactForm, validateContact);
+(0, _utils.onSubmit)(contactForm, validateContact);

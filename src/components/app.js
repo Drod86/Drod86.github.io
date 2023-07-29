@@ -91,27 +91,27 @@ onClickAll(projectBtns, toggleModal);
 // Persist Form State:
 const contactForm = grab('.form');
 
-const captureFormState = (form) => Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0).reduce((acc, input) => ({ ...acc, [input.name]: input.value }), {});
+// const captureFormState = (form) => Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0).reduce((acc, input) => ({ ...acc, [input.name]: input.value }), {});
 
-const persistFormState = (form) => {
-  const formName = form.classList[0];
-  const formState = JSON.stringify(captureFormState(form));
-  localStorage.setItem(formName, formState);
-};
+// const persistFormState = (form) => {
+//   const formName = form.classList[0];
+//   const formState = JSON.stringify(captureFormState(form));
+//   localStorage.setItem(formName, formState);
+// };
 
-const loadFormState = (form) => {
-  const formName = form.classList[0];
-  const formInputs = Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0);
-  const stateExists = localStorage.getItem(formName);
-  if (stateExists === null) {
-    persistFormState(form);
-  }
-  const state = JSON.parse(localStorage.getItem(formName));
-  formInputs.forEach((input) => { input.value = state[input.name]; });
-};
+// const loadFormState = (form) => {
+//   const formName = form.classList[0];
+//   const formInputs = Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0);
+//   const stateExists = localStorage.getItem(formName);
+//   if (stateExists === null) {
+//     persistFormState(form);
+//   }
+//   const state = JSON.parse(localStorage.getItem(formName));
+//   formInputs.forEach((input) => { input.value = state[input.name]; });
+// };
 
-onLoad(window, loadFormState.bind(this, contactForm));
-onUnload(window, persistFormState.bind(this, contactForm));
+// onLoad(window, loadFormState.bind(this, contactForm));
+// onUnload(window, persistFormState.bind(this, contactForm));
 
 // Form validation functionality "lowercase email address"
 const handleInvalidEmail = (form, email) => {

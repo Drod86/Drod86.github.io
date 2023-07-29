@@ -1,37 +1,35 @@
-{ 
-  "homepage": "https://github.com/Drod86/Hello_Microverse#readme",
-  "name": "hello_microverse",
-  "version": "1.0.0",
-  "description": "Inintial Microverse Project Set Up",
-  "source": "docs/index.html",
-  "scripts": {
-    "start": "[ -d 'dist/' ] && rm -rf dist/ && parcel || parcel",
-    "build": "[ -d 'dist/' ] && rm -rf dist/ docs/ && parcel build && cp -r dist/ docs/ || parcel build && cp -r dist/ docs/"
+{
+  "homepage":"https://github.com/Drod86/Hello_Microverse#readme","name":"hello_microverse",
+  "version":"1.0.0",
+  "description":"Inintial Microverse Project Set Up",
+  "source":"src/index.html",
+  "scripts":{
+    "start":"live-server src/",
+    "build": "babel src -d build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Drod86/Hello_Microverse.git"
+  "repository":{
+    "type":"git",
+    "url":"git+https://github.com/Drod86/Hello_Microverse.git"
   },
-  "author": "Daniel Rodriguez",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Drod86/Hello_Microverse/issues"
+  "author":"Daniel Rodriguez",
+  "license":"MIT",
+  "bugs":{
+    "url":"https://github.com/Drod86/Hello_Microverse/issues"
   },
-  "dependencies": {
-    "lighthouse": "^10.2.0"
+  "dependencies":{
+    "lighthouse":"^10.2.0"
   },
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.9.3",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.27.5",
-    "hint": "^7.1.8",
-    "live-server": "^1.2.2",
-    "parcel": "^2.9.3",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^21.0.0",
-    "stylelint-csstree-validator": "^1.9.0",
-    "stylelint-scss": "^3.21.0"
+  "devDependencies":{
+    "@parcel/transformer-sass":"^2.9.3",
+    "babel-cli":"^6.26.0",
+    "babel-eslint":"^10.1.0",
+    "babel-preset-env":"^1.7.0",
+    "eslint":"^7.32.0",
+    "eslint-config-airbnb-base":"^14.2.1","eslint-plugin-import":"^2.27.5",
+    "hint":"^7.1.8",
+    "live-server":"^1.2.2",
+    "stylelint":"^13.13.1",
+    "stylelint-config-standard":"^21.0.0","stylelint-csstree-validator":"^1.9.0",
+    "stylelint-scss":"^3.21.0"
   }
 }
