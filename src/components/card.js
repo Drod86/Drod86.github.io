@@ -1,5 +1,5 @@
 import {badges} from './badges.mjs';
-import heading from './heading.mjs';
+import heading from './heading.js';
 import blurb from './blurb.mjs';
 import button from './button.mjs';
 
