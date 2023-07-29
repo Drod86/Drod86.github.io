@@ -164,10 +164,12 @@ li {
   transition: all 0.5s ease;
 }
 
-.btn:hover {
-  color: var(--primary-color);
-  background-color: hsl(22, 100%, 92%);
-  border: 1px solid var(--primary-color);
+@media screen and (min-width: 768px) {
+  .btn:hover {
+    color: var(--primary-color);
+    background-color: hsl(22, 100%, 92%);
+    border: 1px solid var(--primary-color);
+  }
 }
 
 .btn:active {
@@ -938,6 +940,7 @@ li {
   flex-direction: column;
   gap: 2.4rem;
   width: 100%;
+  position: relative;
 }
 
 .form .text {
@@ -978,6 +981,39 @@ li {
 .form button {
   align-self: center;
   margin-bottom: space(4.75);
+}
+
+.invalidEmail {
+  color: var(--primary-color);
+  background-color: hsl(22, 100%, 92%);
+  border: 1px solid var(--primary-color);
+  transition: opacity 2s;
+  width: 90%;
+  align-self: center;
+  padding: 1.2rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: center;
+  position: absolute;
+  bottom: -12rem;
+}
+
+@media screen and (min-width: 768px) {
+  .invalidEmail {
+    width: 55%;
+    border-radius: 0 2rem 2rem 2rem;
+    font-size: 1.4rem;
+    position: relative;
+    bottom: 2rem;
+  }
+
+  .invalidEmail:hover {
+    opacity: 100%;
+  }
+}
+
+.fadeOut {
+  opacity: 0;
 }
 
 @media screen and (min-width: 768px) {

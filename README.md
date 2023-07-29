@@ -126,7 +126,6 @@ To run the project, execute the following command:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
-- [ ] **Persisting form data**
 - [ ] **Modal back and next buttons and functionality**
 - [ ] **Real projects**
 
