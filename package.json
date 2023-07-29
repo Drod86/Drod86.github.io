@@ -1,8 +1,9 @@
-{
+{ 
+  "homepage": "https://github.com/Drod86/Hello_Microverse#readme",
   "name": "hello_microverse",
   "version": "1.0.0",
   "description": "Inintial Microverse Project Set Up",
-  "source": "src/index.html",
+  "source": "docs/index.html",
   "scripts": {
     "start": "[ -d 'dist/' ] && rm -rf dist/ && parcel || parcel",
     "build": "[ -d 'dist/' ] && rm -rf dist/ docs/ && parcel build && cp -r dist/ docs/ || parcel build && cp -r dist/ docs/"
@@ -16,7 +17,6 @@
   "bugs": {
     "url": "https://github.com/Drod86/Hello_Microverse/issues"
   },
-  "homepage": "https://github.com/Drod86/Hello_Microverse#readme",
   "dependencies": {
     "lighthouse": "^10.2.0"
   },
