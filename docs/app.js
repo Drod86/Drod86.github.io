@@ -1,9 +1,12 @@
 import {
-  grab, onClick, onClickAll, stopListenAll, observer, node, render, grabAll, listen,
-} from './utils/utils.mjs';
-import modal from './components/modal.mjs';
-import card from './components/card.mjs';
-import db from './utils/fake_db.mjs';
+  grab, onClick, onClickAll, onSubmit, onLoad,
+  stopListenAll, observer, node, render, grabAll,
+  listen, onUnload,
+} from './utils/utils';
+import modal from './components/modal';
+import card from './components/card';
+import db from './utils/fake_db';
+import fadingPopup from './components/popups';
 
 const NAV = grab('.nav');
 const ITEMS = Object.values(NAV.children);
@@ -48,7 +51,6 @@ render(projectEl, projects(db.projects));
 const projectCards = Object.values(grabAll('.card'));
 projectCards.forEach((project) => {
   const isDesktop = window.matchMedia('(min-width: 768px)');
-  console.log(isDesktop.matches);
   if (project.parentNode.className.includes('projects') && isDesktop.matches) {
     const previousBG = project.style.backgroundImage;
     listen(project, 'mouseover', () => {
@@ -83,3 +85,53 @@ const toggleModal = (e) => {
 };
 // Add the click event listener to the projectBtns that will toggle the modal
 onClickAll(projectBtns, toggleModal);
+
+// Form Functionality: persist state and validate email entry
+
+// Persist Form State:
+const contactForm = grab('.form');
+
+const captureFormState = (form) => Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0).reduce((acc, input) => ({ ...acc, [input.name]: input.value }), {});
+
+const persistFormState = (form) => {
+  const formName = form.classList[0];
+  const formState = JSON.stringify(captureFormState(form));
+  localStorage.setItem(formName, formState);
+};
+
+const loadFormState = (form) => {
+  const formName = form.classList[0];
+  const formInputs = Object.values(form.children).filter((child) => Object.values(child.attributes).filter((att) => att.name === 'required').length > 0);
+  const stateExists = localStorage.getItem(formName);
+  if (stateExists === null) {
+    persistFormState(form);
+  }
+  const state = JSON.parse(localStorage.getItem(formName));
+  formInputs.forEach((input) => { input.value = state[input.name]; });
+};
+
+onLoad(window, loadFormState.bind(this, contactForm));
+onUnload(window, persistFormState.bind(this, contactForm));
+
+// Form validation functionality "lowercase email address"
+const handleInvalidEmail = (form, email) => {
+  const emailField = grab('.email');
+  const className = 'invalidEmail';
+  const popupText = 'Your email must be in all lowercase. We changed it for you? If it looks good, submit the form again. Thank you!';
+  fadingPopup(form, className, popupText);
+  emailField.value = email.toLowerCase();
+};
+
+const validateContact = (e) => {
+  e.preventDefault();
+  const email = grab('.email').value;
+  const isLowercase = email === email.toLowerCase();
+  if (isLowercase) {
+    contactForm.submit();
+    contactForm.reset();
+  } else {
+    handleInvalidEmail(contactForm, email);
+  }
+};
+
+onSubmit(contactForm, validateContact);
